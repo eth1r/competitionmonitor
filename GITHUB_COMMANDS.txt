@@ -1,0 +1,164 @@
+🚀 КОМАНДЫ ДЛЯ ЗАГРУЗКИ НА GITHUB
+==================================
+
+Репозиторий: https://github.com/eth1r/competitionmonitor.git
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 ВАРИАНТ 1: АВТОМАТИЧЕСКИ (РЕКОМЕНДУЕТСЯ)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Просто запусти файл:
+    UPLOAD_TO_GITHUB.bat
+
+Он выполнит все команды автоматически!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 ВАРИАНТ 2: ВРУЧНУЮ (ПОШАГОВО)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Открой командную строку в папке проекта и выполни:
+
+1️⃣ Инициализация Git:
+   git init
+
+2️⃣ Добавить все файлы:
+   git add .
+
+3️⃣ Создать коммит:
+   git commit -m "Initial commit: Competition Monitor v1.0.7"
+
+4️⃣ Добавить удаленный репозиторий:
+   git remote add origin https://github.com/eth1r/competitionmonitor.git
+
+5️⃣ Отправить на GitHub:
+   git branch -M main
+   git push -u origin main
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🐛 ЕСЛИ ВОЗНИКЛИ ОШИБКИ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ "remote origin already exists"
+   Решение:
+   git remote remove origin
+   git remote add origin https://github.com/eth1r/competitionmonitor.git
+
+❌ "failed to push some refs"
+   Решение:
+   git pull origin main --rebase
+   git push -u origin main
+
+❌ "Authentication failed"
+   Решение:
+   - Настрой GitHub Personal Access Token
+   - Или используй GitHub Desktop
+   - Или настрой SSH ключ
+
+❌ "Repository not found"
+   Решение:
+   - Проверь, что репозиторий создан на GitHub
+   - Проверь правильность URL
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ПОСЛЕ УСПЕШНОЙ ЗАГРУЗКИ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Перейди на: https://github.com/eth1r/competitionmonitor
+
+2. Нажми "Releases" → "Create a new release"
+
+3. Заполни:
+   - Tag version: v1.0.7
+   - Release title: Competition Monitor v1.0.7
+   - Description: (см. ниже)
+
+4. Загрузи файл: competition-monitor-v1.0.7-windows.zip
+
+5. Нажми "Publish release"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 ОПИСАНИЕ ДЛЯ RELEASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🚀 Competition Monitor v1.0.7
+
+AI-powered competitor analysis tool for e-commerce websites.
+
+## ✨ Features
+- 🔍 Website parsing with Selenium
+- 🤖 AI analysis with GPT-4o-mini
+- 🎨 Modern PyQt6 interface
+- 🌐 Proxy support for OpenAI
+- 📊 Detailed competitor insights
+- 🧠 Smart page type detection (product/catalog/info)
+- ⚡ Fast parsing with image loading disabled
+- 🔒 Secure API key management
+
+## 📥 Download
+Download `competition-monitor-v1.0.7-windows.zip` from Assets below.
+
+## 📋 Requirements
+- Windows 10/11 (64-bit)
+- Google Chrome (auto-installed if needed)
+- Internet connection
+- OpenAI API key (optional, for AI analysis)
+
+## 🚀 Quick Start
+1. Download and extract the ZIP file
+2. Run `competitionmonitor-simple.exe`
+3. Enter competitor URL
+4. Click "Start Analysis"
+5. Get instant results!
+
+## ⚙️ AI Setup (Optional)
+1. Get OpenAI API key from https://platform.openai.com/api-keys
+2. Create `.env` file next to .exe
+3. Add: `OPENAI_API_KEY=your_key_here`
+4. Restart app
+
+## 📖 Documentation
+- [README.md](README.md) - Full documentation
+- [README_RU.md](README_RU.md) - Russian documentation
+- [FAQ.md](FAQ.md) - Frequently asked questions
+- [CHANGELOG.md](CHANGELOG.md) - Version history
+
+## 🐛 Bug Reports
+Report issues on [GitHub Issues](https://github.com/eth1r/competitionmonitor/issues)
+
+## 🤝 Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## 📄 License
+MIT License - Free to use and modify
+
+## 🙏 Acknowledgments
+Built with:
+- Python 3.12
+- PyQt6 for GUI
+- Selenium for web scraping
+- OpenAI GPT-4o-mini for AI analysis
+
+---
+
+**Star ⭐ this repo if you find it useful!**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 ГОТОВО!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Теперь твой проект на GitHub и доступен всем!
+
+Ссылка для скачивания:
+https://github.com/eth1r/competitionmonitor/releases/latest
+
+Поделись в соцсетях:
+- Reddit: r/Python, r/SideProject
+- Telegram: Python каналы
+- VK: Программирование
+- Habr: Статья о проекте

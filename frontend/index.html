@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Анализ сайтов конкурентов</title>
+  <style>
+    :root {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: #0f172a;
+      background: #f8fafc;
+    }
+    body {
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: min(900px, 100%);
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      padding: 24px;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 6px 12px rgba(37, 99, 235, 0.25);
+    }
+    .preview {
+      margin-top: 18px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+    }
+    .preview img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      font-size: 14px;
+      color: #0f172a;
+      white-space: pre-wrap;
+    }
+    .error {
+      color: #b91c1c;
+    }
+    .results {
+      margin-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+    .result-block {
+      margin-bottom: 12px;
+    }
+    .result-block h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+    ul {
+      margin: 6px 0 0 16px;
+    }
+    canvas {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Тестирование API анализа скриншота</h1>
+    <p>Нажмите, чтобы снять скриншот экрана и отправить его на backend.</p>
+    <button id="captureBtn">Сделать скриншот</button>
+
+    <div class="preview" id="preview" style="display:none;">
+      <img id="screenshotImg" alt="Скриншот" />
+    </div>
+
+    <div class="status" id="status">Готово к работе.</div>
+
+    <div class="results" id="results" style="display:none;">
+      <div class="result-block">
+        <h3>Design Score</h3>
+        <div id="designScore">—</div>
+      </div>
+      <div class="result-block">
+        <h3>Material Quality Focus</h3>
+        <div id="materialScore">—</div>
+      </div>
+      <div class="result-block">
+        <h3>Lifestyle Context Score</h3>
+        <div id="lifestyleScore">—</div>
+      </div>
+      <div class="result-block">
+        <h3>Summary</h3>
+        <div id="summaryText">—</div>
+      </div>
+    </div>
+
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script>
+    const captureBtn = document.getElementById("captureBtn");
+    const statusEl = document.getElementById("status");
+    const preview = document.getElementById("preview");
+    const imgEl = document.getElementById("screenshotImg");
+    const results = document.getElementById("results");
+    const summaryText = document.getElementById("summaryText");
+    const designScoreEl = document.getElementById("designScore");
+    const materialScoreEl = document.getElementById("materialScore");
+    const lifestyleScoreEl = document.getElementById("lifestyleScore");
+    const canvas = document.getElementById("canvas");
+    const apiUrl = "http://127.0.0.1:8000/analyze";
+
+    const setStatus = (text, isError = false) => {
+      statusEl.textContent = text;
+      statusEl.classList.toggle("error", isError);
+    };
+
+    const stopTracks = (stream) => {
+      if (!stream) return;
+      stream.getTracks().forEach((t) => t.stop());
+    };
+
+    captureBtn.addEventListener("click", async () => {
+      setStatus("Запрашиваем доступ к экрану...");
+      results.style.display = "none";
+      summaryText.textContent = "—";
+      designScoreEl.textContent = "—";
+      materialScoreEl.textContent = "—";
+      lifestyleScoreEl.textContent = "—";
+
+      let stream;
+      try {
+        stream = await navigator.mediaDevices.getDisplayMedia({
+          video: { frameRate: 1 },
+        });
+        setStatus("Получаем кадр...");
+
+        const track = stream.getVideoTracks()[0];
+        const imageCapture = new ImageCapture(track);
+        const bitmap = await imageCapture.grabFrame();
+
+        const { width, height } = bitmap;
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(bitmap, 0, 0, width, height);
+
+        const dataUrl = canvas.toDataURL("image/png");
+
+        stopTracks(stream);
+
+        imgEl.src = dataUrl;
+        preview.style.display = "block";
+        setStatus("Отправляем на бэкенд...");
+
+        const response = await fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ base64_image: dataUrl }),
+        });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(`HTTP ${response.status}: ${text}`);
+        }
+
+        const data = await response.json();
+        summaryText.textContent = data.summary ?? "—";
+        designScoreEl.textContent = data.design_score ?? "—";
+        materialScoreEl.textContent = data.material_quality_focus ?? "—";
+        lifestyleScoreEl.textContent = data.lifestyle_context_score ?? "—";
+
+        results.style.display = "block";
+        setStatus("Готово ✔");
+      } catch (err) {
+        stopTracks(stream);
+        console.error(err);
+        setStatus(`Ошибка: ${err.message}`, true);
+      }
+    });
+  </script>
+</body>
+</html>
+
