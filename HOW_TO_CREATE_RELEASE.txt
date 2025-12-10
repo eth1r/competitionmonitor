@@ -1,0 +1,191 @@
+📦 КАК СОЗДАТЬ RELEASE НА GITHUB
+=================================
+
+ВАЖНО: Сначала загрузи код на GitHub (git push), потом создавай Release!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ШАГ 1: ЗАГРУЗИТЬ КОД НА GITHUB
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Выполни команды (или запусти UPLOAD_TO_GITHUB.bat):
+
+git init
+git add .
+git commit -m "Initial commit: Competition Monitor v1.0.7"
+git remote add origin https://github.com/eth1r/competitionmonitor.git
+git branch -M main
+git push -u origin main
+
+✅ Код загружен!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ШАГ 2: СОЗДАТЬ RELEASE С .ZIP ФАЙЛОМ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Открой браузер
+
+2. Перейди на: https://github.com/eth1r/competitionmonitor
+
+3. Найди кнопку "Releases" (справа на странице)
+   ┌─────────────────────────────────────┐
+   │  About                              │
+   │  ⭐ Star  👁️ Watch  🍴 Fork         │
+   │                                     │
+   │  📦 Releases  ← ВОТ ЭТА КНОПКА     │
+   │  📊 Contributors                    │
+   └─────────────────────────────────────┘
+
+4. Нажми "Create a new release"
+   (или "Draft a new release" если это первый релиз)
+
+5. Заполни форму:
+
+   ┌─────────────────────────────────────────────────────────┐
+   │ Choose a tag                                            │
+   │ ┌─────────────────────────────────────────────────────┐ │
+   │ │ v1.0.7  ← Напиши это (создаст новый тег)           │ │
+   │ └─────────────────────────────────────────────────────┘ │
+   │                                                         │
+   │ Release title                                           │
+   │ ┌─────────────────────────────────────────────────────┐ │
+   │ │ Competition Monitor v1.0.7                          │ │
+   │ └─────────────────────────────────────────────────────┘ │
+   │                                                         │
+   │ Describe this release                                   │
+   │ ┌─────────────────────────────────────────────────────┐ │
+   │ │ # 🚀 Competition Monitor v1.0.7                     │ │
+   │ │                                                     │ │
+   │ │ AI-powered competitor analysis tool...              │ │
+   │ │ (скопируй описание из GITHUB_COMMANDS.txt)         │ │
+   │ └─────────────────────────────────────────────────────┘ │
+   │                                                         │
+   │ Attach binaries by dropping them here or selecting them│
+   │ ┌─────────────────────────────────────────────────────┐ │
+   │ │  📎 Перетащи сюда файл:                            │ │
+   │ │     competition-monitor-v1.0.7-windows.zip         │ │
+   │ │                                                     │ │
+   │ │  Или нажми "Choose files" и выбери файл            │ │
+   │ └─────────────────────────────────────────────────────┘ │
+   │                                                         │
+   │ [ ] Set as a pre-release                                │
+   │ [ ] Set as the latest release  ← Поставь галочку       │
+   │                                                         │
+   │ [Publish release]  ← Нажми эту кнопку                  │
+   └─────────────────────────────────────────────────────────┘
+
+6. Нажми "Publish release"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ ГОТОВО!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Теперь пользователи могут скачать .zip файл!
+
+Ссылка для скачивания:
+https://github.com/eth1r/competitionmonitor/releases/download/v1.0.7/competition-monitor-v1.0.7-windows.zip
+
+Или короткая ссылка:
+https://github.com/eth1r/competitionmonitor/releases/latest
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 ОПИСАНИЕ ДЛЯ RELEASE (СКОПИРУЙ ЭТО)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+# 🚀 Competition Monitor v1.0.7
+
+AI-powered competitor analysis tool for e-commerce websites.
+
+## ✨ Features
+- 🔍 Website parsing with Selenium
+- 🤖 AI analysis with GPT-4o-mini
+- 🎨 Modern PyQt6 interface
+- 🌐 Proxy support for OpenAI
+- 📊 Detailed competitor insights
+- 🧠 Smart page type detection (product/catalog/info)
+- ⚡ Fast parsing with image loading disabled
+- 🔒 Secure API key management
+
+## 📥 Download
+Download `competition-monitor-v1.0.7-windows.zip` from Assets below.
+
+**File size:** 63.6 MB  
+**Platform:** Windows 10/11 (64-bit)
+
+## 📋 Requirements
+- Windows 10/11 (64-bit)
+- Google Chrome (auto-installed if needed)
+- Internet connection
+- OpenAI API key (optional, for AI analysis)
+
+## 🚀 Quick Start
+1. Download and extract the ZIP file
+2. Run `competitionmonitor-simple.exe`
+3. Enter competitor URL
+4. Click "Start Analysis"
+5. Get instant results!
+
+## ⚙️ AI Setup (Optional)
+For AI analysis, you need an OpenAI API key:
+
+1. Get API key from https://platform.openai.com/api-keys
+2. Create `.env` file next to .exe
+3. Add: `OPENAI_API_KEY=your_key_here`
+4. Restart app
+
+See `SETUP_AI.txt` in the archive for detailed instructions.
+
+## 📖 Documentation
+- [README.md](https://github.com/eth1r/competitionmonitor/blob/main/README.md) - Full documentation
+- [README_RU.md](https://github.com/eth1r/competitionmonitor/blob/main/README_RU.md) - Russian documentation
+- [FAQ.md](https://github.com/eth1r/competitionmonitor/blob/main/FAQ.md) - Frequently asked questions
+- [CHANGELOG.md](https://github.com/eth1r/competitionmonitor/blob/main/CHANGELOG.md) - Version history
+
+## 🐛 Bug Reports
+Found a bug? [Report it here](https://github.com/eth1r/competitionmonitor/issues)
+
+## 🤝 Contributing
+Contributions are welcome! See [CONTRIBUTING.md](https://github.com/eth1r/competitionmonitor/blob/main/CONTRIBUTING.md)
+
+## 📄 License
+MIT License - Free to use and modify
+
+## 🙏 Acknowledgments
+Built with:
+- Python 3.12
+- PyQt6 for GUI
+- Selenium for web scraping
+- OpenAI GPT-4o-mini for AI analysis
+
+---
+
+**⭐ Star this repo if you find it useful!**
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 ПОСЛЕ ПУБЛИКАЦИИ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Поделись ссылкой:
+
+📱 Telegram:
+"🚀 Запустил AI инструмент для анализа конкурентов!
+Скачать: https://github.com/eth1r/competitionmonitor/releases/latest"
+
+🐦 Twitter/X:
+"Built an AI-powered competitor analysis tool with Python! 
+🔍 Selenium parsing + 🤖 GPT-4 analysis
+Download: https://github.com/eth1r/competitionmonitor
+#Python #AI #OpenSource"
+
+📝 Reddit (r/Python, r/SideProject):
+"[Project] Competition Monitor - AI-powered competitor analysis
+https://github.com/eth1r/competitionmonitor"
+
+💼 LinkedIn:
+"Excited to share my latest project: Competition Monitor - an AI tool 
+for analyzing competitor websites. Built with Python, Selenium, and OpenAI.
+Check it out: https://github.com/eth1r/competitionmonitor"
